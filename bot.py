@@ -21,9 +21,6 @@ async def start(Mbot, message):
 @Mbot.on_message(filters.regex(r'https?://.*instagram[^\s]+'), group=1)
 async def link_handler(Mbot, message):
     link = message.matches[0].group(0)
-    get_s = await db.get_set(message.chat.id)
-    if get_s['http'] == "False":
-       return
     try:
         m = await message.reply_text("⏳")
         url= link.replace("instagram.com","ddinstagram.com")
