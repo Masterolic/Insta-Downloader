@@ -8,7 +8,7 @@ API_ID=int(environ['API_ID'])
 API_HASH=environ['API_HASH']
 BOT_TOKEN=environ['BOT_TOKEN']
 LOG_GRPUP=environ.get('LOG_GROUP',None)
-If LOG_GROUP:
+if LOG_GROUP:
    int(LOG_GROUP)
 Mbot=Client(api_id=API_ID,
             api_hash=API_HASH,
