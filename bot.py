@@ -15,7 +15,9 @@ Mbot=Client(name="instabot",
             api_hash=API_HASH,
             bot_token=BOT_TOKEN,
             sleep_threshold=22)
-
+@Mbot.on_message(filters.command("start") & filters.incoming)
+async def start(Mbot, message):
+          await message.reply(f"Hello 👋👋 {message.from_user.mention()}\n I am A Simple Fastest  Instagram Downloader Bot Currently Supports Reels and Post")
 @Mbot.on_message(filters.regex(r'https?://.*instagram[^\s]+'), group=1)
 async def link_handler(Mbot, message):
     link = message.matches[0].group(0)
