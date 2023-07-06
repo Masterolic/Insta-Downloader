@@ -10,7 +10,8 @@ BOT_TOKEN=environ['BOT_TOKEN']
 LOG_GROUP=environ.get('LOG_GROUP',None)
 if LOG_GROUP:
    int(LOG_GROUP)
-Mbot=Client(api_id=API_ID,
+Mbot=Client(name="instabot",
+            api_id=API_ID,
             api_hash=API_HASH,
             bot_token=BOT_TOKEN,
             workers=16,
