@@ -14,7 +14,6 @@ Mbot=Client(name="instabot",
             api_id=API_ID,
             api_hash=API_HASH,
             bot_token=BOT_TOKEN,
-            workers=16,
             sleep_threshold=22)
 
 @Mbot.on_message(filters.regex(r'https?://.*instagram[^\s]+'), group=1)
