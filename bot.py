@@ -7,7 +7,7 @@ load_dotenv("config.env")
 API_ID=int(environ['API_ID'])
 API_HASH=environ['API_HASH']
 BOT_TOKEN=environ['BOT_TOKEN']
-LOG_GRPUP=environ.get('LOG_GROUP',None)
+LOG_GROUP=environ.get('LOG_GROUP',None)
 if LOG_GROUP:
    int(LOG_GROUP)
 Mbot=Client(api_id=API_ID,
