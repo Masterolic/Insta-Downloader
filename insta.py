@@ -7,6 +7,9 @@ load_dotenv("config.env")
 API_ID=int(environ['API_ID'])
 API_HASH=environ['API_HASH']
 BOT_TOKEN=environ['BOT_TOKEN']
+LOG_GRPUP=environ.get('LOG_GROUP',None)
+If LOG_GROUP:
+   int(LOG_GROUP)
 Mbot=Client(api_id=API_ID,
             api_hash=API_HASH,
             bot_token=BOT_TOKEN,
@@ -39,7 +42,9 @@ async def link_handler(Mbot, message):
                  await message.reply_photo(f"https://ddinstagram.com{content_value}")
         except Exception as e:
             await message.reply_text(f"https://ddinstagram.com{content_value}")
-            await Mbot.send_message(-1001744816254,f"Instagram {e} {content_value}")
+            if LOG_GROUP:
+               await Mbot.send_message(LOG_GROUP,f"Instagram {e} {content_value}")
+            ##optinal 
             await message.reply(f"400: Sorry, Unable To Find It  try another or report it  to @masterolic or support chat @spotify_supportbot 🤖  ")
 if __name__ == '__main__':
     print (" Insta-DL Bot started  running...")
