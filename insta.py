@@ -1,7 +1,7 @@
 #https://t.me/Masterolic
 from pyrogram import filters, Client 
 import bs4, requests
-from sys import environ
+from os import environ
 from dotenv import load_dotenv
 load_dotenv("config.env")
 API_ID=int(environ['API_ID'])
