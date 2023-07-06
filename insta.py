@@ -23,7 +23,7 @@ async def link_handler(Mbot, message):
     if get_s['http'] == "False":
        return
     try:
- #       m = await message.reply_text("⏳")
+        m = await message.reply_text("⏳")
         url= link.replace("instagram.com","ddinstagram.com")
         await message.reply_video(url)
     except Exception as e:
