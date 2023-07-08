@@ -16,9 +16,6 @@ Mbot=Client(name="instabot",
             bot_token=BOT_TOKEN,
             plugins=dict(root="plugins"),
             sleep_threshold=22)
-@Mbot.on_message(filters.command("start") & filters.incoming)
-async def start(Mbot, message):
-          await message.reply(f"Hello 👋👋 {message.from_user.mention()}\n I am A Simple Fastest  Instagram Downloader Bot Currently Supports Reels and Post")
 if __name__ == '__main__':
     print (" Insta-DL Bot started  running...")
 
