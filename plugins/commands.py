@@ -1,4 +1,4 @@
-from pyrogram import filters, Client 
+from pyrogram import filters, Client as Mbot
 import bs4, requests
 
 @Mbot.on_message(filters.command("start") & filters.incoming)
