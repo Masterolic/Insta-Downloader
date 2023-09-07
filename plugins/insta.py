@@ -1,6 +1,6 @@
 from pyrogram import filters, Client as Mbot
 import bs4, requests
-
+from bot import LOG_GROUP
 @Mbot.on_message(filters.regex(r'https?://.*instagram[^\s]+'), group=1)
 async def link_handler(Mbot, message):
     link = message.matches[0].group(0)
