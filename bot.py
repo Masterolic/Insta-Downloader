@@ -7,9 +7,12 @@ load_dotenv("config.env")
 API_ID=int(environ['API_ID'])
 API_HASH=environ['API_HASH']
 BOT_TOKEN=environ['BOT_TOKEN']
-LOG_GROUP=environ.get('LOG_GROUP',None)
+LOG_GROUP=environ['LOG_GROUP',None]
+DUMP_GROUP=environ['DUMP_GROUP',None]
 if LOG_GROUP:
    int(LOG_GROUP)
+if DUMP_GROUP:
+   int(DUMP_GROUP)
 Mbot=Client(name="instabot",
             api_id=API_ID,
             api_hash=API_HASH,
