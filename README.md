@@ -48,6 +48,8 @@ python3 bot.py
 
 `LOG_GROUP`Telegram chat id of your log group to dump errors
 
+`DUMP_GROUP` Telegram chat id for logging all messages send to bot dm also files sended by bot 
+
 ### CAN I CONTACT OWNER ?
  >  IF you need any help or need to add any features or tell feedback , don't hesitate to contact me 
 
