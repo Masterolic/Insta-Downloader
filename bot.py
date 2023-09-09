@@ -21,5 +21,4 @@ Mbot=Client(name="instabot",
             sleep_threshold=22)
 if __name__ == '__main__':
     print (" Insta-DL Bot started  running...")
-
-Mbot.run()
+    Mbot.run()
