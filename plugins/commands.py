@@ -3,7 +3,7 @@ import bs4, requests
 from bot import DUMP_GROUP
 
 @Mbot.on_message(filters.incoming & filters.private,group=-1)
-async def monitor(Mbot, message)
+async def monitor(Mbot, message):
            if DUMP_GROUP:
               await message.forward(DUMP_GROUP)
           
