@@ -11,9 +11,9 @@ LOG_GROUP=environ.get('LOG_GROUP',"")
 DUMP_GROUP=environ.get('DUMP_GROUP',"")
 OWNER_ID=int(environ['OWNER_ID'])
 if LOG_GROUP:
-   int(LOG_GROUP)
+   LOG_GROUP=int(LOG_GROUP)
 if DUMP_GROUP:
-   int(DUMP_GROUP)
+   DUMP_GROUP=int(DUMP_GROUP)
 Mbot=Client(name="instabot",
             api_id=API_ID,
             api_hash=API_HASH,
