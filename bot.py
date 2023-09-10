@@ -7,9 +7,9 @@ load_dotenv("config.env")
 API_ID=int(environ['API_ID'])
 API_HASH=environ['API_HASH']
 BOT_TOKEN=environ['BOT_TOKEN']
-LOG_GROUP=environ.get('LOG_GROUP',"")
-DUMP_GROUP=environ.get('DUMP_GROUP',"")
-OWNER_ID=environ['OWNER_ID']
+LOG_GROUP=int(environ.get('LOG_GROUP',""))
+DUMP_GROUP=int(environ.get('DUMP_GROUP',""))
+OWNER_ID=int(environ['OWNER_ID'])
 if LOG_GROUP:
    int(LOG_GROUP)
 if DUMP_GROUP:
