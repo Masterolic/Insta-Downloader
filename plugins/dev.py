@@ -7,7 +7,7 @@ from requests import post
 from subprocess import getoutput as run
 
 from pyrogram import filters
-from mbot import Mbot as Client
+from bot import Mbot as Client
 from pyrogram.types import (
     CallbackQuery,
     InlineKeyboardButton,
