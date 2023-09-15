@@ -7,7 +7,7 @@ async def link_handler(Mbot, message):
     try:
         m = await message.reply_text("⏳")
         url= link.replace("instagram.com","ddinstagram.com")
-        await message.reply(url)
+        url=url.replace("==","%3D%3D")
         dump_file=await message.reply_video(url)
         if 'dump_file' in locals():
            await dump_file.forward(DUMP_GROUP)
