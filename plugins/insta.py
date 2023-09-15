@@ -11,6 +11,7 @@ async def link_handler(Mbot, message):
         dump_file=await message.reply_video(url)
         if 'dump_file' in locals():
            await dump_file.forward(DUMP_GROUP)
+        await m.delete()
     except Exception as e:
         try:
             if "/reel/" in url:
