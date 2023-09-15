@@ -9,7 +9,7 @@ async def link_handler(Mbot, message):
         url= link.replace("instagram.com","ddinstagram.com")
         url=url.replace("==","%3D%3D")
         if url.endswith("="):
-           dump_file=await message.reply_video(url[:-1])
+           dump_file=await message.reply_video(url[:-1]+"%3D")
         else:
             dump_file=await message.reply_video(url)
         if 'dump_file' in locals():
