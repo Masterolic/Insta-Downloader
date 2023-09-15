@@ -8,7 +8,10 @@ async def link_handler(Mbot, message):
         m = await message.reply_text("⏳")
         url= link.replace("instagram.com","ddinstagram.com")
         url=url.replace("==","%3D%3D")
-        dump_file=await message.reply_video(url)
+        if url.endswith("="):
+           dump_file=await message.reply_video(url[-1])
+        else:
+            dump_file=await message.reply_video(url)
         if 'dump_file' in locals():
            await dump_file.forward(DUMP_GROUP)
         await m.delete()
