@@ -29,9 +29,17 @@ async def link_handler(Mbot, message):
                  getdata = requests.get(url).text
                  soup = bs4.BeautifulSoup(getdata, 'html.parser')
                  meta_tag = soup.find('meta', attrs={'property': 'og:video'})
-                 content_value = meta_tag['content']
-                 downfile=wget.download(f"https://ddinstagram.com{content_value}")
-                 dump_file=await message.reply_photo(downfile)
+                 if not meta_tag:
+                    meta_tag = soup.find('meta', attrs={'property': 'og:image'})
+                    content_value = meta_tag['content']
+                    downrm=wget.download(f"https://ddinstagram.com{content_value}")
+                    os.rename(downfile,f"{downfile}.png")
+                    downfile=f"{downfile}.png"
+                    dump_file=await message.reply_photo(downfile)
+                 else:
+                     content_value = meta_tag['content']
+                     downfile=wget.download(f"https://ddinstagram.com{content_value}")
+                     dump_file=await message.reply_video(downfile)
         except Exception as e:
             await message.reply_text(f"https://ddinstagram.com{content_value}")
             if LOG_GROUP:
