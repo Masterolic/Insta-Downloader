@@ -28,7 +28,7 @@ async def link_handler(Mbot, message):
             elif "/p/" in url:
                  getdata = requests.get(url).text
                  soup = bs4.BeautifulSoup(getdata, 'html.parser')
-                 meta_tag = soup.find('meta', attrs={'property': 'og:image'})
+                 meta_tag = soup.find('meta', attrs={'property': 'og:video'})
                  content_value = meta_tag['content']
                  downfile=wget.download(f"https://ddinstagram.com{content_value}")
                  dump_file=await message.reply_photo(downfile)
