@@ -33,8 +33,8 @@ async def link_handler(Mbot, message):
                     meta_tag = soup.find('meta', attrs={'property': 'og:image'})
                     content_value = meta_tag['content']
                     downrm=wget.download(f"https://ddinstagram.com{content_value}")
-                    os.rename(downrm,f"{downfile}.png")
-                    downfile=f"{downfile}.png"
+                    os.rename(downrm,f"{downrm}.png")
+                    downfile=f"{downrm}.png"
                     dump_file=await message.reply_photo(downfile)
                  else:
                      content_value = meta_tag['content']
