@@ -1,6 +1,6 @@
 from pyrogram import filters, Client as Mbot
 import bs4, requests
-import wget,os
+import wget,os,traceback
 from bot import LOG_GROUP,DUMP_GROUP
 @Mbot.on_message(filters.regex(r'https?://.*instagram[^\s]+') & filters.incoming, group=1)
 async def link_handler(Mbot, message):
@@ -44,6 +44,8 @@ async def link_handler(Mbot, message):
             await message.reply_text(f"https://ddinstagram.com{content_value}")
             if LOG_GROUP:
                await Mbot.send_message(LOG_GROUP,f"Instagram {e} {content_value}")
+               tracemsg=traceback.extract_tb(e.__traceback__)
+               await message.reply(tracemsg)
             ##optinal 
             await message.reply(f"400: Sorry, Unable To Find It  try another or report it  to @masterolic or support chat @spotify_supportbot 🤖  ")
 
