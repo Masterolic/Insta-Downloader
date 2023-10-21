@@ -25,8 +25,11 @@ async def link_handler(Mbot, message):
                if not meta_tag:
                   meta_tag = soup.find('meta', attrs={'property': 'og:image'})    
                content_value = meta_tag['content']
-               downfile=wget.download(f"https://ddinstagram.com{content_value}")
-               dump_file=await message.reply_video(downfile) 
+               try:
+                   dump_file=await message.reply_video(f"https://ddinstagram.com{content_value}")
+               except:
+                   downfile=wget.download(f"https://ddinstagram.com{content_value}")
+                   dump_file=await message.reply_video(downfile) 
             elif "/p/" in url:
                  getdata = requests.get(url).text
                  soup = bs4.BeautifulSoup(getdata, 'html.parser')
