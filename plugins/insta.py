@@ -43,8 +43,11 @@ async def link_handler(Mbot, message):
                     dump_file=await message.reply_photo(downfile)
                  else:
                      content_value = meta_tag['content']
-                     downfile=wget.download(f"https://ddinstagram.com{content_value}")
-                     dump_file=await message.reply_video(downfile)
+                     try:
+                         dump_file=await message.reply_photo(f"https://ddinstagram.com{content_value}")
+                     except:
+                         downfile=wget.download(f"https://ddinstagram.com{content_value}")
+                         dump_file=await message.reply_video(downfile)
         except Exception as e:
             await message.reply_text(f"https://ddinstagram.com{content_value}")
             if LOG_GROUP:
