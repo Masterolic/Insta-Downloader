@@ -71,11 +71,10 @@ async def link_handler(Mbot, message):
                          downfile=wget.download(f"https://ddinstagram.com{content_value}")
                          dump_file=await message.reply_video(downfile)
         except Exception as e:
-            await message.reply_text(f"https://ddinstagram.com{content_value}")
+          #  await message.reply_text(f"https://ddinstagram.com{content_value}")
             if LOG_GROUP:
-               await Mbot.send_message(LOG_GROUP,f"Instagram {e} {content_value}")
-               tracemsg=traceback.extract_tb(e.__traceback__)
-               await message.reply(tracemsg)
+               await Mbot.send_message(LOG_GROUP,f"Instagram {e} {link}")
+          #     await message.reply(tracemsg)
             ##optinal 
             await message.reply(f"400: Sorry, Unable To Find It  try another or report it  to @masterolic or support chat @spotify_supportbot 🤖  ")
 
