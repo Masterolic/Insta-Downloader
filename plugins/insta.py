@@ -41,7 +41,7 @@ async def link_handler(Mbot, message):
                      meta=re.findall(r'href="(https?://[^"]+)"', res['data']) 
                   else:
                       return await message.reply("oops something went wrong")
-               content_value = meta_tag[0]
+               content_value = meta[0]
                try:
                    dump_file=await message.reply_video(f"https://ddinstagram.com{content_value}")
                except:
