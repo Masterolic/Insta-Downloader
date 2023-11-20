@@ -31,10 +31,12 @@ async def link_handler(Mbot, message):
     except Exception as e:
         try:
             if "/reel/" in url:
+               ddinsta=True 
                getdata = requests.get(url).text
                soup = bs4.BeautifulSoup(getdata, 'html.parser')
                meta_tag = soup.find('meta', attrs={'property': 'og:video'})
                if not meta_tag:
+                  ddinsta=False
                   meta_tag = requests.post("https://saveig.app/api/ajaxSearch", data={"q": link, "t": "media", "lang": "en"}, headers=headers)
                   if meta_tag.ok:
                      res=meta_tag.json()
@@ -43,9 +45,12 @@ async def link_handler(Mbot, message):
                       return await message.reply("oops something went wrong")
                content_value = meta[0]
                try:
-                   dump_file=await message.reply_video(f"https://ddinstagram.com{content_value}")
+                   if ddinsta:
+                      dump_file=await message.reply_video(f"https://ddinstagram.com{content_value}")
+                   else:
+                       dump_file=await message.reply_video(content_value)
                except:
-                   downfile=wget.download(f"https://ddinstagram.com{content_value}")
+                   downfile=wget.download(content_value)
                    dump_file=await message.reply_video(downfile) 
             elif "/p/" in url:
                  getdata = requests.get(url).text
