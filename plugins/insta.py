@@ -1,7 +1,19 @@
 from pyrogram import filters, Client as Mbot
-import bs4, requests
+import bs4, requests,re
 import wget,os,traceback
 from bot import LOG_GROUP,DUMP_GROUP
+headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0",
+    "Accept": "*/*",
+    "Accept-Language": "en-US,en;q=0.5",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+    "X-Requested-With": "XMLHttpRequest",
+    "Content-Length": "99",
+    "Origin": "https://saveig.app",
+    "Connection": "keep-alive",
+    "Referer": "https://saveig.app/en",
+}
 @Mbot.on_message(filters.regex(r'https?://.*instagram[^\s]+') & filters.incoming, group=1)
 async def link_handler(Mbot, message):
     link = message.matches[0].group(0)
@@ -23,8 +35,13 @@ async def link_handler(Mbot, message):
                soup = bs4.BeautifulSoup(getdata, 'html.parser')
                meta_tag = soup.find('meta', attrs={'property': 'og:video'})
                if not meta_tag:
-                  meta_tag = soup.find('meta', attrs={'property': 'og:image'})    
-               content_value = meta_tag['content']
+                  meta_tag = requests.post("https://saveig.app/api/ajaxSearch", data={"q": link, "t": "media", "lang": "en"}, headers=headers)
+                  if meta_tag.ok:
+                     res=meta_tag.json()
+                     meta=re.findall(r'href="(https?://[^"]+)"', res['data']) 
+                  else:
+                      return await message.reply("oops something went wrong")
+               content_value = meta_tag[0]
                try:
                    dump_file=await message.reply_video(f"https://ddinstagram.com{content_value}")
                except:
