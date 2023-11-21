@@ -38,8 +38,10 @@ async def link_handler(Mbot, message):
                if not meta_tag:
                   ddinsta=False
                   meta_tag = requests.post("https://saveig.app/api/ajaxSearch", data={"q": link, "t": "media", "lang": "en"}, headers=headers)
+                  print(meta_tag)
                   if meta_tag.ok:
                      res=meta_tag.json()
+                     print(res)
                      await message.reply(res)
                      meta=re.findall(r'href="(https?://[^"]+)"', res['data']) 
                   else:
@@ -84,6 +86,7 @@ async def link_handler(Mbot, message):
           #  await message.reply_text(f"https://ddinstagram.com{content_value}")
             if LOG_GROUP:
                await Mbot.send_message(LOG_GROUP,f"Instagram {e} {link}")
+               await Mbot.send_message(LOG_GROUP, traceback.format_exc())
           #     await message.reply(tracemsg)
             ##optinal 
             await message.reply(f"400: Sorry, Unable To Find It  try another or report it  to @masterolic or support chat @spotify_supportbot 🤖  ")
