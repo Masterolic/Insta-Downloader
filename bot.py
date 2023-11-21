@@ -1,6 +1,6 @@
 #https://t.me/Masterolic
 from pyrogram import filters, Client 
-import bs4, requests
+import bs4, requests, logging 
 from os import environ
 from dotenv import load_dotenv
 load_dotenv("config.env")
@@ -10,6 +10,8 @@ BOT_TOKEN=environ['BOT_TOKEN']
 LOG_GROUP=environ.get('LOG_GROUP',"")
 DUMP_GROUP=environ.get('DUMP_GROUP',"")
 OWNER_ID=int(environ['OWNER_ID'])
+logging.getLogger("pyrogram").setLevel(logging.WARNING)
+LOGGER = logging.getLogger(__name__)
 if LOG_GROUP:
    LOG_GROUP=int(LOG_GROUP)
 if DUMP_GROUP:
