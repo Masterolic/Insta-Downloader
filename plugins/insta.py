@@ -35,6 +35,10 @@ async def link_handler(Mbot, message):
                getdata = requests.get(url).text
                soup = bs4.BeautifulSoup(getdata, 'html.parser')
                meta_tag = soup.find('meta', attrs={'property': 'og:video'})
+               try:
+                  content_value = meta_tag['content']
+               except:
+                   pass 
                if not meta_tag:
                   ddinsta=False
                   meta_tag = requests.post("https://saveig.app/api/ajaxSearch", data={"q": link, "t": "media", "lang": "en"}, headers=headers)
@@ -42,7 +46,7 @@ async def link_handler(Mbot, message):
                   if meta_tag.ok:
                      res=meta_tag.json()
                      print(res)
-                     await message.reply(res)
+                #     await message.reply(res)
                      meta=re.findall(r'href="(https?://[^"]+)"', res['data']) 
                      content_value = meta[0]
                   else:
