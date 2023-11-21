@@ -36,7 +36,7 @@ async def link_handler(Mbot, message):
                soup = bs4.BeautifulSoup(getdata, 'html.parser')
                meta_tag = soup.find('meta', attrs={'property': 'og:video'})
                try:
-                  content_value = meta_tag['content']
+                  content_value =f"https://ddinstagram.com{meta_tag['content']}"
                except:
                    pass 
                if not meta_tag:
