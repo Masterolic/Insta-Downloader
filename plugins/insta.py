@@ -70,6 +70,15 @@ async def link_handler(Mbot, message):
                      except:
                          downfile=wget.download(f"https://ddinstagram.com{content_value}")
                          dump_file=await message.reply_video(downfile)
+            elif "stories" in url:
+                  meta_tag = requests.post("https://saveig.app/api/ajaxSearch", data={"q": link, "t": "media", "lang": "en"}, headers=headers)
+                  if meta_tag.ok:
+                     res=meta_tag.json()
+                     meta=re.findall(r'href="(https?://[^"]+)"', res['data']) 
+                  else:
+                      return await message.reply("oops something went wrong")
+                  content_value = meta[0]
+                  dump_file=await message.reply_video(content_value)
         except Exception as e:
           #  await message.reply_text(f"https://ddinstagram.com{content_value}")
             if LOG_GROUP:
