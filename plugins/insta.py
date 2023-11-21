@@ -40,6 +40,7 @@ async def link_handler(Mbot, message):
                   meta_tag = requests.post("https://saveig.app/api/ajaxSearch", data={"q": link, "t": "media", "lang": "en"}, headers=headers)
                   if meta_tag.ok:
                      res=meta_tag.json()
+                     await message.reply(res)
                      meta=re.findall(r'href="(https?://[^"]+)"', res['data']) 
                   else:
                       return await message.reply("oops something went wrong")
