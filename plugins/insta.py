@@ -53,7 +53,7 @@ async def link_handler(Mbot, message):
                       return await message.reply("oops something went wrong")
                try:
                    if ddinsta:
-                      dump_file=await message.reply_video(f"https://ddinstagram.com{content_value}")
+                      dump_file=await message.reply_video(content_value)
                    else:
                        dump_file=await message.reply_video(content_value)
                except:
