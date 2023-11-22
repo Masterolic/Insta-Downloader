@@ -69,8 +69,11 @@ async def link_handler(Mbot, message):
               #    await message.reply(meta)
                   for i in range(len(meta) - 1):
                      com=await message.reply_text(meta[i])
-                     dump_file=await message.reply_video(com.text)
-                     await com.delete()
+                     try:
+                        dump_file=await message.reply_video(com.text)
+                        await com.delete()
+                     except:
+                         pass 
             elif "stories" in url:
                   meta_tag = requests.post("https://saveig.app/api/ajaxSearch", data={"q": link, "t": "media", "lang": "en"}, headers=headers)
                   if meta_tag.ok:
