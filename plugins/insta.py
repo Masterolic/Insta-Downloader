@@ -66,8 +66,8 @@ async def link_handler(Mbot, message):
                      meta=re.findall(r'href="(https?://[^"]+)"', res['data']) 
                   else:
                       return await message.reply("oops something went wrong")
-                  await message.reply(meta)
-                  for i in range(len(meta), - 1):
+              #    await message.reply(meta)
+                  for i in range(len(meta) - 1):
                      content_value = meta[i]
                      dump_file=await message.reply_video(content_value)
             elif "stories" in url:
