@@ -60,23 +60,15 @@ async def link_handler(Mbot, message):
                    downfile=wget.download(content_value)
                    dump_file=await message.reply_video(downfile) 
             elif "/p/" in url:
-                 getdata = requests.get(url).text
-                 soup = bs4.BeautifulSoup(getdata, 'html.parser')
-                 meta_tag = soup.find('meta', attrs={'property': 'og:video'})
-                 if not meta_tag:
-                    meta_tag = soup.find('meta', attrs={'property': 'og:image'})
-                    content_value = meta_tag['content']
-                    downrm=wget.download(f"https://ddinstagram.com{content_value}")
-                    os.rename(downrm,f"{downrm}.png")
-                    downfile=f"{downrm}.png"
-                    dump_file=await message.reply_photo(downfile)
-                 else:
-                     content_value = meta_tag['content']
-                     try:
-                         dump_file=await message.reply_photo(f"https://ddinstagram.com{content_value}")
-                     except:
-                         downfile=wget.download(f"https://ddinstagram.com{content_value}")
-                         dump_file=await message.reply_video(downfile)
+                  meta_tag = requests.post("https://saveig.app/api/ajaxSearch", data={"q": link, "t": "media", "lang": "en"}, headers=headers)
+                  if meta_tag.ok:
+                     res=meta_tag.json()
+                     meta=re.findall(r'href="(https?://[^"]+)"', res['data']) 
+                  else:
+                      return await message.reply("oops something went wrong")
+                  for i in range(len(meta), - 1):
+                     content_value = meta[i]
+                     dump_file=await message.reply_video(content_value)
             elif "stories" in url:
                   meta_tag = requests.post("https://saveig.app/api/ajaxSearch", data={"q": link, "t": "media", "lang": "en"}, headers=headers)
                   if meta_tag.ok:
