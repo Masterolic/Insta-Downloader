@@ -1,5 +1,5 @@
 from pyrogram import filters, Client as Mbot
-import bs4, requests,re
+import bs4, requests,re,asyncio
 import wget,os,traceback
 from bot import LOG_GROUP,DUMP_GROUP
 headers = {
@@ -69,6 +69,7 @@ async def link_handler(Mbot, message):
               #    await message.reply(meta)
                   for i in range(len(meta) - 1):
                      com=await message.reply_text(meta[i])
+                     await asyncio.sleep(1)
                      try:
                         dump_file=await message.reply_video(com.text)
                         await com.delete()
@@ -81,8 +82,17 @@ async def link_handler(Mbot, message):
                      meta=re.findall(r'href="(https?://[^"]+)"', res['data']) 
                   else:
                       return await message.reply("oops something went wrong")
-                  content_value = meta[0]
-                  dump_file=await message.reply_video(content_value)
+                  try:
+                     dump_file=await message.reply_video(meta[0])
+                  except:
+                      com=await message.reply(meta[0])
+                      await asyncio.sleep(1)
+                      try:
+                          dump_file=await message.reply_video(com.text)
+                          await com.delete()
+                      except:
+                          pass
+                      
         except Exception as e:
           #  await message.reply_text(f"https://ddinstagram.com{content_value}")
             if LOG_GROUP:
