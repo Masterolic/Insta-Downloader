@@ -22,9 +22,9 @@ async def link_handler(Mbot, message):
         url= link.replace("instagram.com","ddinstagram.com")
         url=url.replace("==","%3D%3D")
         if url.endswith("="):
-           dump_file=await message.reply_video(url[:-1])
+           dump_file=await message.reply_video(url[:-1],caption="Thank you for using - @InstaReelsdownbot")
         else:
-            dump_file=await message.reply_video(url)
+            dump_file=await message.reply_video(url,caption="Thank you for using - @InstaReelsdownbot")
         if 'dump_file' in locals():
            await dump_file.forward(DUMP_GROUP)
         await m.delete()
@@ -53,7 +53,7 @@ async def link_handler(Mbot, message):
                       return await message.reply("oops something went wrong")
                try:
                    if ddinsta:
-                      dump_file=await message.reply_video(content_value)
+                      dump_file=await message.reply_video(content_value,caption="Thank you for using - @InstaReelsdownbot")
                    else:
                        dump_file=await message.reply_video(content_value)
                except:
@@ -71,7 +71,7 @@ async def link_handler(Mbot, message):
                      com=await message.reply_text(meta[i])
                      await asyncio.sleep(1)
                      try:
-                        dump_file=await message.reply_video(com.text)
+                        dump_file=await message.reply_video(com.text,caption="Thank you for using - @InstaReelsdownbot")
                         await com.delete()
                      except:
                          pass 
@@ -81,14 +81,14 @@ async def link_handler(Mbot, message):
                      res=meta_tag.json()
                      meta=re.findall(r'href="(https?://[^"]+)"', res['data']) 
                   else:
-                      return await message.reply("oops something went wrong")
+                      return await message.reply("Oops something went wrong")
                   try:
-                     dump_file=await message.reply_video(meta[0])
+                     dump_file=await message.reply_video(meta[0], caption="Thank you for using - @InstaReelsdownbot")
                   except:
                       com=await message.reply(meta[0])
                       await asyncio.sleep(1)
                       try:
-                          dump_file=await message.reply_video(com.text)
+                          dump_file=await message.reply_video(com.text,caption="Thank you for using - @InstaReelsdownbot")
                           await com.delete()
                       except:
                           pass
