@@ -39,11 +39,11 @@ async def link_handler(Mbot, message):
                        await sndmsg.delete()
                    except Exception:
                       pass 
-       except Exception as e:
+    except Exception as e:
            if LOG_GROUP:
                await Mbot.send_message(LOG_GROUP,f"Facebook {e} {link}")
                await Mbot.send_message(LOG_GROUP, traceback.format_exc())          
-       finally:
+    finally:
           if 'dump_file' in locals():
             if DUMP_GROUP:
                await dump_file.copy(DUMP_GROUP)
