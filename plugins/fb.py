@@ -47,10 +47,4 @@ async def link_handler(Mbot, message):
           if 'dump_file' in locals():
             if DUMP_GROUP:
                await dump_file.copy(DUMP_GROUP)
-          await m.delete()
-                
-                     
-                
-                   
-             
-       
+          await m.delete()      
