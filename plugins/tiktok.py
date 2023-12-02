@@ -11,16 +11,16 @@ async def link_handler(Mbot, message):
         get_api= requests.post("https://lovetik.com/api/ajax/search",data={"query":link}).json()
         if get_api['status'] and "Invalid TikTok video url" in get_api['mess']: 
            return await message.reply("Oops Invalid TikTok video url. Please try again :) ")
-        if get_api.get('play_url'):
+        if get_api.get('links'):
            try:
-              dump_file = await message.reply_video(get_api['play_url'], caption="Thank you for using - @InstaReelsdownbot")
+              dump_file = await message.reply_video(get_api['links'][0]['a'], caption="Thank you for using - @InstaReelsdownbot")
            except KeyError:
                return await message.reply("Invalid TikTok video url. Please try again.")
            except Exception:
-               snd_msg=await message.reply(get_api['play_url'])
+               snd_msg=await message.reply(get_api['links'][0]['a'])
                await asyncio.sleep(1)
                try:
-                  dump_file = await message.reply_video(get_api['play_url'],caption="Thank you for using - @InstaReelsdownbot")
+                  dump_file = await message.reply_video(get_api['links'][0]['a'],caption="Thank you for using - @InstaReelsdownbot")
                   await snd_msg.delete()
                except Exception:
                    pass
