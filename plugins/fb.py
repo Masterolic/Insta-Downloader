@@ -11,8 +11,8 @@ async def link_handler(Mbot, message):
        get_api=requests.get(f"https://yasirapi.eu.org/fbdl?link={link}")
        if get_api['success'] == "false":
           return await message.reply("Invalid TikTok video url. Please try again :)")
-       try:
-          if get_api['hd']:
+       while True:
+          if get_api.get('hd'):
              try:
                  dump_file = await message.reply_video(get_api['result']['hd'],caption="Thank you for using - @InstaReelsdownbot")
              except KeyError:
@@ -26,7 +26,7 @@ async def link_handler(Mbot, message):
                  except Exception:
                       pass 
           else: 
-             if get_api['sd']:
+             if get_api.get('sd'):
                try:
                    dump_file = await message.reply_video(get_api['result']['sd'],caption="Thank you for using - @InstaReelsdownbot")
                except KeyError:
