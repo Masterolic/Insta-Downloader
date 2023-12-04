@@ -14,7 +14,7 @@ headers = {
     "Connection": "keep-alive",
     "Referer": "https://saveig.app/en",
 }
-@Mbot.on_message(filters.regex(r'https?://.*instagram[^\s]+') & filters.incoming, group=1)
+@Mbot.on_message(filters.regex(r'https?://.*instagram[^\s]+') & filters.incoming)
 async def link_handler(Mbot, message):
     link = message.matches[0].group(0)
     try:
