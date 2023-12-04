@@ -8,7 +8,7 @@ async def link_handler(Mbot, message):
     link = message.matches[0].group(0)
     try:
        m = await message.reply_text("⏳")
-       get_api=requests.get(f"https://yasirapi.eu.org/fbdl?link={link}")
+       get_api=requests.get(f"https://yasirapi.eu.org/fbdl?link={link}").json()
        if get_api['success'] == "false":
           return await message.reply("Invalid TikTok video url. Please try again :)")
        while True:
