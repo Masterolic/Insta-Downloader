@@ -31,17 +31,21 @@ async def twitter_handler(Mbot, message):
               soup = BeautifulSoup(get_api.text, "lxml")
               cekdata = soup.find("a", {"pure-button pure-button-primary is-center u-bl dl-button download_link without_watermark vignette_active"})
           except Exception as e:
+              print(e)
               return await message.reply("Oops Invalid TikTok video url. Please try again :)")
           try:
               dump_file = await message.reply_video(cekdata.get('href'))
           except Exception as e:
+              print(e)
               snd_msg = await message.reply(cekdata.get('href'))
               await asyncio.sleep(1)
               try:
                   await message.reply_video(cekdata.get('href'))
-              except Exception:
+              except Exception as e:
                   pass
+                  print(e)
       except Exception as e:
+          print(e)
           if LOG_GROUP:
              await Mbot.send_message(LOG_GROUP,f"TikTok {e} {link}")
              await Mbot.send_message(LOG_GROUP, traceback.format_exc())          
