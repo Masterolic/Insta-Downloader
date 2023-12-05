@@ -39,11 +39,12 @@ async def twitter_handler(Mbot, message):
               await asyncio.sleep(1)
               try:
                   await message.reply_video(cekdata.get('href'))
-              except Exception as e:
-                  if LOG_GROUP:
-                     await Mbot.send_message(LOG_GROUP,f"TikTok {e} {link}")
-                     await Mbot.send_message(LOG_GROUP, traceback.format_exc())          
-
+              except Exception:
+                  pass
+      except Exception as e:
+          if LOG_GROUP:
+             await Mbot.send_message(LOG_GROUP,f"TikTok {e} {link}")
+             await Mbot.send_message(LOG_GROUP, traceback.format_exc())          
       finally:
          if 'dump_file' in locals():
             if DUMP_GROUP:
