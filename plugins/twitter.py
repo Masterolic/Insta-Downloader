@@ -26,7 +26,7 @@ async def twitter_handler(Mbot, message):
             "source": "form",
           }
           m = await message.reply_text("⏳")
-          get_api=post("https://ssstwitter.com/id",data=data,headers=headers)
+          get_api=requests.post("https://ssstwitter.com/id",data=data,headers=headers)
           try:
               soup = BeautifulSoup(get_api.text, "lxml")
               cekdata = soup.find("a", {"pure-button pure-button-primary is-center u-bl dl-button download_link without_watermark vignette_active"})
