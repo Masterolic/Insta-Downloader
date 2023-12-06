@@ -42,9 +42,10 @@ async def twitter_handler(Mbot,message):
                       print(e)
                       await message.reply("Oops Invalid link or Media Is Not Available:)")
    except Exception as e:
+        print(e)
         if LOG_GROUP:
-           await Mbot.send_message(e)
-           await Mbot.send_message(traceback.exec())
+           await Mbot.send_message(LOG_GROUP,e)
+           await Mbot.send_message(LOG_GROUP,traceback.exec())
    finally:
        if DUMP_GROUP:
           if "dump_file" in locals():
