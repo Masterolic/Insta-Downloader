@@ -7,7 +7,7 @@ from bot import LOG_GROUP,DUMP_GROUP
 async def link_handler(Mbot, message):
     link = message.matches[0].group(0)
     try:
-        m = await message.reply_text("⏳")
+        m = await message.reply_sticker("CAACAgIAAxkBATWhF2Qz1Y-FKIKqlw88oYgN8N82FtC8AAJnAAPb234AAT3fFO9hR5GfHgQ")
         get_api= requests.post("https://lovetik.com/api/ajax/search",data={"query":link}).json()
         if get_api['status'] and "Invalid TikTok video url" in get_api['mess']: 
            return await message.reply("Oops Invalid TikTok video url. Please try again :) ")
