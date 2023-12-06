@@ -9,7 +9,7 @@ from requests import get
 async def thumb_down(videoId):
     with open(f"/tmp/thumbnails/{videoId}.jpg","wb") as file:
         file.write(get(f"https://img.youtube.com/vi/{videoId}/default.jpg").content)
-    return f"/tmp/thumbnails/{videoId}.jpg"
+    return f"/tmp/{videoId}.jpg"
   
 async def ytdl_down(path,video_url,id):
 #    pool = multiprocessing.Pool(processes=8)
