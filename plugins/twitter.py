@@ -3,8 +3,8 @@ from bot import LOG_GROUP,DUMP_GROUP
 import os,re,asyncio,bs4
 import requests,wget,traceback
 
-@Mbot.on_message(filters.regex(r'https?://[^\s]+'),filters.incoming, group=6)
-async def twitter_handler(Mbot,message):
+@Mbot.on_message(filters.regex(r'https?://.*twitter[^\s]+') & filters.incoming,group=-5)
+async def link_handler(Mbot, message):
    try:            
       link=message.matches[0].group(0)
       if "x.com" in link:
