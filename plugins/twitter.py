@@ -45,7 +45,7 @@ async def twitter_handler(Mbot,message):
         if LOG_GROUP:
            await Mbot.send_message(e)
            await Mbot.send_message(traceback.exec())
-    finally:
+   finally:
        if DUMP_GROUP:
           if "dump_file" in locals():
              await dump_file.copy(DUMP_GROUP)
