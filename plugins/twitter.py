@@ -4,7 +4,7 @@ import os,re,asyncio,bs4
 import requests,wget,traceback
 
 @Mbot.on_message(filters.regex(r'https?://.*twitter[^\s]+') & filters.incoming,group=-5)
-async def link_handler(Mbot, message):
+async def twitter_handler(Mbot, message):
    try:            
       link=message.matches[0].group(0)
       if "x.com" in link:
