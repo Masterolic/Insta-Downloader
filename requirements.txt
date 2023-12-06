@@ -1,4 +1,3 @@
-#pyrogram==2.0.38 ##this not latest but fastest version for uploading files
 git+https://github.com/masterolic/pyrogram.git
 bs4
 requests
