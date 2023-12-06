@@ -13,6 +13,11 @@ async def link_handler(Mbot, message):
            return await message.reply("Oops Invalid TikTok video url. Please try again :) ")
         if get_api.get('links'):
            try:
+              if "MP3" in get_api['links'][0]['t']:
+                 try:
+                     await message.reply_photo(get_api['cover'])
+                 except:
+                     pass 
               dump_file = await message.reply_video(get_api['links'][0]['a'], caption="Thank you for using - @InstaReelsdownbot")
            except KeyError:
                return await message.reply("Invalid TikTok video url. Please try again.")
