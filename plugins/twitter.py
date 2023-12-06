@@ -1,5 +1,5 @@
 from pyrogram import filters, Client as Mbot
-import bs4, requests,re,asyncio
+import bs4, requests,re,asyncio,wget
 import wget,os,traceback
 from bot import LOG_GROUP,DUMP_GROUP
 from bs4 import BeautifulSoup
@@ -28,8 +28,8 @@ async def twitter_handler(Mbot, message):
           m = await message.reply_text("⏳")
           get_api=requests.post("https://ssstwitter.com/id",data=data,headers=headers)
           try:
-              soup = BeautifulSoup(get_api.text, "lxml")
-              cekdata = soup.find("a", {"pure-button pure-button-primary is-center u-bl dl-button download_link without_watermark vignette_active"})
+              soup = BeautifulSoup(get_api.text, "html.parser")
+              cekdata = soup.find('a', class_='dl-button')
           except Exception as e:
               print(e)
               return await message.reply("Oops Invalid TikTok video url. Please try again :)")
@@ -43,11 +43,17 @@ async def twitter_handler(Mbot, message):
                   await message.reply_video(cekdata.get('href'))
               except Exception as e:
                   pass
-                  print(e)
+                  try:
+                      down_file=wget.download(cekdata.get('href'))
+                      dump_file=await message.reply_video(down_file)
+                      await sndmsg.delete()
+                      os.remove(down_file)
+                  except Exception as e:
+                      print(e)
       except Exception as e:
           print(e)
           if LOG_GROUP:
-             await Mbot.send_message(LOG_GROUP,f"TikTok {e} {link}")
+             await Mbot.send_message(LOG_GROUP,f"Twitter {e} {link}")
              await Mbot.send_message(LOG_GROUP, traceback.format_exc())          
       finally:
          if 'dump_file' in locals():
