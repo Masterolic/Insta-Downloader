@@ -24,7 +24,13 @@ async def link_handler(Mbot, message):
                      dump_file = await message.reply_video(get_api['result']['hd'],caption="Thank you for using - @InstaReelsdownbot")
                      await sndmsg.delete()
                  except Exception:
-                      pass 
+                     try:
+                        down_file = wget.download(get_api['result']['hd'])
+                        await message.reply_video(down_file,caption="Thank you for using - @InstaReelsdownbot")
+                        await sndmsg.delete()
+                        os.remove(down_file)
+                     except:
+                         return await message.reply("Oops Failed To Send File Instead Of Link")
           else: 
              if get_api.get('result').get('sd'):
                try:
@@ -38,7 +44,13 @@ async def link_handler(Mbot, message):
                        dump_file = await message.reply_video(get_api['result']['sd'],caption="Thank you for using - @InstaReelsdownbot")
                        await sndmsg.delete()
                    except Exception:
-                      pass 
+                      try:
+                        down_file = wget.download(get_api['result']['sd'])
+                        await message.reply_video(down_file,caption="Thank you for using - @InstaReelsdownbot")
+                        await sndmsg.delete()
+                        os.remove(down_file)
+                      except:
+                         return await message.reply("Oops Failed To Send File Instead Of Link")
     except Exception as e:
            if LOG_GROUP:
                await Mbot.send_message(LOG_GROUP,f"Facebook {e} {link}")
