@@ -42,10 +42,10 @@ async def link_handler(Mbot, message):
                if not meta_tag:
                   ddinsta=False
                   meta_tag = requests.post("https://saveig.app/api/ajaxSearch", data={"q": link, "t": "media", "lang": "en"}, headers=headers)
-             #     print(meta_tag)
+             
                   if meta_tag.ok:
                      res=meta_tag.json()
-                     print(res)
+               
                 #     await message.reply(res)
                      meta=re.findall(r'href="(https?://[^"]+)"', res['data']) 
                      content_value = meta[0]
