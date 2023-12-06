@@ -5,4 +5,4 @@ requests
 python-dotenv
 tgcrypto
 wget
-lxml
+git+https://github.com/yt-dlp/yt-dlp.git
