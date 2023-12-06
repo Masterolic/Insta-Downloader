@@ -3,6 +3,7 @@ from os import mkdir
 from random import randint
 from bot import LOG_GROUP,DUMP_GROUP
 from pyrogram import filters
+from youtube_search import YoutubeSearch
 from yt_dlp import YoutubeDL
 from requests import get
 async def thumb_down(videoId):
