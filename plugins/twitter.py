@@ -1,4 +1,4 @@
-from pyrogram import Client as Mbot
+from pyrogram import filters,Client as Mbot
 from bot import LOG_GROUP,DUMP_GROUP
 import os,re,asyncio,bs4
 import requests,wget,traceback
