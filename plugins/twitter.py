@@ -49,6 +49,7 @@ async def twitter_handler(Mbot,message):
        if DUMP_GROUP:
           if "dump_file" in locals():
              await dump_file.copy(DUMP_GROUP)
+       await m.delete()
                       
                   
             
