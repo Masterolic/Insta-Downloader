@@ -18,7 +18,7 @@ headers = {
 async def link_handler(Mbot, message):
     link = message.matches[0].group(0)
     try:
-        m = await message.reply_text("⏳")
+        m = await message.reply_sticker("CAACAgIAAxkBATWhF2Qz1Y-FKIKqlw88oYgN8N82FtC8AAJnAAPb234AAT3fFO9hR5GfHgQ")
         url= link.replace("instagram.com","ddinstagram.com")
         url=url.replace("==","%3D%3D")
         if url.endswith("="):
