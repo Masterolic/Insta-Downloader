@@ -23,6 +23,7 @@ async def twitter_handler(Mbot, message):
              await snd_message.delete()
           except Exception as e:
               print(e)
+              await snd_message.delete()
               get_api=requests.get(link).text
               soup=bs4.BeautifulSoup(get_api,"html.parser")
               meta_tag= soup.find("meta", attrs = {"property": "og:video"})
