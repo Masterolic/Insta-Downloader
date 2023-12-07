@@ -7,7 +7,7 @@ from youtube_search import YoutubeSearch
 from yt_dlp import YoutubeDL
 from requests import get
 async def thumb_down(videoId):
-    with open(f"/tmp/thumbnails/{videoId}.jpg","wb") as file:
+    with open(f"/tmp/{videoId}.jpg","wb") as file:
         file.write(get(f"https://img.youtube.com/vi/{videoId}/default.jpg").content)
     return f"/tmp/{videoId}.jpg"
   
@@ -58,7 +58,7 @@ async def getIds(video):
         except:
             ids.append([info_dict.get('id'),info_dict.get('playlist_index'),info_dict.get('creator') or info_dict.get('uploader'),info_dict.get('title'),info_dict.get('duration'),info_dict.get('thumbnail')])
     return ids
-@Mbot.on_message(filters.regex(r'https?://.*youtube[^\s]+') & filters.incoming| filters.command(["yt","ytd","ytmusic"]) & filters.regex(r'https?://.*youtube[^\s]+') & filters.incoming,group=-3)
+@Mbot.on_message(filters.regex(r'https?://.*youtube[^\s]+') & filters.incoming| filters.command(["yt","ytd","ytmusic"]) & filters.regex(r'https?://.*youtube[^\s]+') & filters.incoming)
 async def _(Mbot,message):
     try:
         m = await message.reply_sticker("CAACAgIAAxkBATWhF2Qz1Y-FKIKqlw88oYgN8N82FtC8AAJnAAPb234AAT3fFO9hR5GfHgQ")
