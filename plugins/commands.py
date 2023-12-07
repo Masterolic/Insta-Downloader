@@ -14,3 +14,6 @@ async def start(Mbot, message):
 @Mbot.on_message(filters.command("help") & filters.incoming)
 async def help(Mbot, message):
           await message.reply("This is user friendly bot so you can simple send your Instagram reel and post links here:) \n eg: `https://www.instagram.com/reel/CZqWDGODoov/?igshid=MzRlODBiNWFlZA==`\n `post:` `https://www.instagram.com/reel/CuCTtORJbDj/?igshid=MzRlODBiNWFlZA==`")
+@Mbot.on_message(filters.command("donate") & filters.command("Donate") & filters.incoming )
+async def donate(_, message):
+       await message.reply_text(f"Donate 🍪 **$** https://www.buymeacoffee.com/Masterolic \n**UPI**`arunrnadh2002@okhdfcbank` \nhttps://www.paypal.me/MasterolicOfficial")
