@@ -46,6 +46,7 @@ async def ytdl_down(path,video_url,id):
             video = ydl.extract_info(video_url, download=True)
             info = ydl.extract_info(video)
             filename = ydl.prepare_filename(video)
+            print(filename)
             return f"{filename}.{qa}"
         except Exception as e:
             pass
