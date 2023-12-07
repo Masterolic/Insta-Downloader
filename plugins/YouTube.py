@@ -58,7 +58,7 @@ async def getIds(video):
         except:
             ids.append([info_dict.get('id'),info_dict.get('playlist_index'),info_dict.get('creator') or info_dict.get('uploader'),info_dict.get('title'),info_dict.get('duration'),info_dict.get('thumbnail')])
     return ids
-@Mbot.on_message(filters.regex(r'https?://.*youtube[^\s]+') & filters.incoming| filters.command(["yt","ytd","ytmusic"]) & filters.regex(r'https?://.*youtube[^\s]+') & filters.incoming)
+@Mbot.on_message(filters.regex(r'https?://.*youtube[^\s]+') & filters.incoming|filters.regex(r'(https?:\/\/(?:www\.)?youtu\.?be(?:\.com)?\/.*)')) & filters.incoming)
 async def _(Mbot,message):
     try:
         m = await message.reply_sticker("CAACAgIAAxkBATWhF2Qz1Y-FKIKqlw88oYgN8N82FtC8AAJnAAPb234AAT3fFO9hR5GfHgQ")
