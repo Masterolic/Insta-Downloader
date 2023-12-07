@@ -48,7 +48,8 @@ async def ytdl_down(path,video_url,id):
             filename = ydl.prepare_filename(video)
             return f"{filename}.{qa}"
         except Exception as e:
-            pass 
+            pass
+            print(e)
 async def getIds(video):
     ids = []
     with YoutubeDL({'quiet':True}) as ydl:
