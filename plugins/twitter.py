@@ -13,7 +13,7 @@ async def twitter_handler(Mbot, message):
          link = link.replace("twitter.com","fxtwitter.com")
       m=await message.reply_sticker("CAACAgIAAxkBATWhF2Qz1Y-FKIKqlw88oYgN8N82FtC8AAJnAAPb234AAT3fFO9hR5GfHgQ")
       try:
-          dump_file = await message.reply_video(link,caption="Thank you for using - @InstaReelsdownbot)
+          dump_file = await message.reply_video(link,caption="Thank you for using - @InstaReelsdownbot")
       except Exception as e:
           print(e)
           try:
