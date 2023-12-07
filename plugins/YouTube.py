@@ -80,6 +80,8 @@ async def _(Mbot,message):
             fileLink = await  ytdl_down(randomdir,id, message.from_user.id)
             print("down completely")
             thumnail = await thumb_down(id[0])
+            await message.repy(fileLink)
+            await message.reply_audio(fileLink)
             AForCopy = await message.reply_audio(fileLink,caption=f"[{id[3]}](https://youtu.be/{id[0]}) - {id[2]}",title=id[3].replace("_"," "),performer=id[2],thumb=thumnail,duration=id[4])
             if LOG_GROUP:
                 await PForCopy.copy(LOG_GROUP)
