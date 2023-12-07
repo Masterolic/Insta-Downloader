@@ -88,4 +88,4 @@ async def _(Mbot,message):
     except Exception as e:
         print(e)
         await message.reply(e)
-        await message.reply(traceback.exec())
+        await message.reply(traceback.format_exc())
