@@ -93,8 +93,8 @@ async def link_handler(Mbot, message):
                       except:
                           pass
 
-   #     except KeyError:
-   #         await message.reply(f"400: Sorry, Unable To Find It Make Sure Its Publically Available :)")
+        except KeyError:
+            await message.reply(f"400: Sorry, Unable To Find It Make Sure Its Publically Available :)")
         except Exception as e:
           #  await message.reply_text(f"https://ddinstagram.com{content_value}")
             if LOG_GROUP:
