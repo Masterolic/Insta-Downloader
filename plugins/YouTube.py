@@ -85,9 +85,9 @@ async def _(Mbot,message):
           #  await message.reply(fileLink)
         #    await message.reply_audio(fileLink)
             AForCopy = await message.reply_audio(fileLink,caption=f"[{id[3]}](https://youtu.be/{id[0]}) - {id[2]} Thank you for using - @InstaReelsdownbot",title=id[3].replace("_"," "),performer=id[2],thumb=thumnail,duration=id[4])
-            if LOG_GROUP:
-                await PForCopy.copy(LOG_GROUP)
-                await AForCopy.copy(LOG_GROUP)
+            if DUMP_GROUP:
+                await PForCopy.copy(DUMP_GROUP)
+                await AForCopy.copy(DUMP_GROUP)
         await m.delete()
     except Exception as e:
         print(e)
