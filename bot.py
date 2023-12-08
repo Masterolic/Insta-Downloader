@@ -21,6 +21,7 @@ Mbot=Client(name="instabot",
             api_hash=API_HASH,
             bot_token=BOT_TOKEN,
             plugins=dict(root="plugins"),
+            workers=64,
             sleep_threshold=22)
 if __name__ == '__main__':
     print (" Insta-DL Bot started  running...")
