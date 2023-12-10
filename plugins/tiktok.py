@@ -38,3 +38,4 @@ async def link_handler(Mbot, message):
             if DUMP_GROUP:
                await dump_file.copy(DUMP_GROUP)
             await m.delete()
+        await message.reply("Check out @spotify_downloa_bot(music)  @spotifynewss(Channel) \n Please Support Us By /donate To Maintain This Project")
