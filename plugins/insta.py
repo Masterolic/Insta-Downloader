@@ -1,6 +1,6 @@
 from pyrogram import filters, Client as Mbot
 import bs4, requests,re,asyncio
-import wget,os,traceback
+import os,traceback,random
 from bot import LOG_GROUP,DUMP_GROUP
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:105.0) Gecko/20100101 Firefox/105.0",
@@ -57,7 +57,9 @@ async def link_handler(Mbot, message):
                    else:
                        dump_file=await message.reply_video(content_value, caption="Thank you for using - @InstaReelsdownbot")
                except:
-                   downfile=wget.download(content_value)
+                   downfile=f"{os.getcwd()}/{random.randint(1,10000000)")
+                   with open(downfile,'wb') as x:
+                       x.write(get(content_value).content,headers=headers)
                    dump_file=await message.reply_video(downfile,caption="Thank you for using - @InstaReelsdownbot") 
             elif "/p/" in url:
                   meta_tag = requests.post("https://saveig.app/api/ajaxSearch", data={"q": link, "t": "media", "lang": "en"}, headers=headers)
