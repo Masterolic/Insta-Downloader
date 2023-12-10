@@ -89,6 +89,7 @@ async def _(Mbot,message):
                 await PForCopy.copy(DUMP_GROUP)
                 await AForCopy.copy(DUMP_GROUP)
         await m.delete()
+        await message.reply("Check out @spotify_downloa_bot(music)  @spotifynewss(Channel) \n Please Support Us By /donate To Maintain This Project")
     except Exception as e:
         print(e)
         await message.reply(e)
