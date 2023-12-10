@@ -57,7 +57,7 @@ async def link_handler(Mbot, message):
                    else:
                        dump_file=await message.reply_video(content_value, caption="Thank you for using - @InstaReelsdownbot")
                except:
-                   downfile=f"{os.getcwd()}/{random.randint(1,10000000)"
+                   downfile=f"{os.getcwd()}/{random.randint(1,10000000)}"
                    with open(downfile,'wb') as x:
                        x.write(get(content_value).content,headers=headers)
                    dump_file=await message.reply_video(downfile,caption="Thank you for using - @InstaReelsdownbot") 
