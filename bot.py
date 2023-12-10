@@ -3,6 +3,7 @@ from pyrogram import filters, Client
 import bs4, requests, logging 
 from os import environ
 from dotenv import load_dotenv
+import multiprocessing 
 load_dotenv("config.env")
 API_ID=int(environ['API_ID'])
 API_HASH=environ['API_HASH']
@@ -25,4 +26,8 @@ Mbot=Client(name="instabot",
             sleep_threshold=22)
 if __name__ == '__main__':
     print (" Insta-DL Bot started  running...")
+    num_workers = 64
+    pool = multiprocessing.Pool(processes=num_workers)
     Mbot.run()
+    pool.close()
+    pool.join()
