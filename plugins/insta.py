@@ -59,7 +59,7 @@ async def link_handler(Mbot, message):
                except:
                    downfile=f"{os.getcwd()}/{random.randint(1,10000000)}"
                    with open(downfile,'wb') as x:
-                       x.write(get(content_value).content,headers=headers)
+                       x.write(requests.get(content_value).content,headers=headers)
                    dump_file=await message.reply_video(downfile,caption="Thank you for using - @InstaReelsdownbot") 
             elif "/p/" in url:
                   meta_tag = requests.post("https://saveig.app/api/ajaxSearch", data={"q": link, "t": "media", "lang": "en"}, headers=headers)
