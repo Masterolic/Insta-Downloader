@@ -32,7 +32,9 @@ async def ytdl_video(path, video_url, id):
     with YoutubeDL(ydl_opts) as ydl:
         try:
             video = ydl.extract_info(video_url, download=True)
-            return f"{file}.{qa}"
+            filename = ydl.prepare_filename(video)
+            print(filename)
+            return f"{filename}.{qa}"
         except (IOError, BrokenPipeError):
             pass
             video = ydl.extract_info(video_url, download=True)
