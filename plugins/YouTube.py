@@ -34,13 +34,13 @@ async def ytdl_video(path, video_url, id):
             video = ydl.extract_info(video_url, download=True)
             filename = ydl.prepare_filename(video)
             print(filename)
-            return f"{filename}.{qa}"
+            return filename
         except (IOError, BrokenPipeError):
             pass
             video = ydl.extract_info(video_url, download=True)
             filename = ydl.prepare_filename(video)
             print(filename)
-            return f"{filename}.{qa}"
+            return filename}
         except Exception as e:
             pass
             print(e)
