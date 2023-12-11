@@ -9,7 +9,7 @@ async def twitter_handler(Mbot, message):
       link=message.matches[0].group(0)
       if "x.com" in link:
          link=link.replace("x.com","fxtwitter.com")
-      if "twitter.com" in link:
+      elif "twitter.com" in link:
          link = link.replace("twitter.com","fxtwitter.com")
       m=await message.reply_sticker("CAACAgIAAxkBATWhF2Qz1Y-FKIKqlw88oYgN8N82FtC8AAJnAAPb234AAT3fFO9hR5GfHgQ")
       try:
