@@ -7,7 +7,7 @@ from shutil import rmtree
 from youtube_search import YoutubeSearch
 from yt_dlp import YoutubeDL
 from requests import get
-import traceback
+import traceback,os
 async def thumb_down(videoId):
     with open(f"/tmp/{videoId}.jpg","wb") as file:
         file.write(get(f"https://img.youtube.com/vi/{videoId}/default.jpg").content)
