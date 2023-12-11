@@ -108,13 +108,18 @@ async def _(Mbot,message):
             randomdir = "/tmp/"+str(randint(1,100000000))
             mkdir(randomdir)
             fileLink = await  ytdl_video(randomdir,link, message.from_user.id)
-            await message.reply(fileLink)
-            await message.reply_video(fileLink)
+            AForCopy=await message.reply_video(fileLink)
             await rmtree(randomdir)
             await m.delete()
+            if DUMP_GROUP:
+                await AForCopy.copy(DUMP_GROUP)
         except Exception as e:
-            await message.reply(e)
             await m.delete()
+            if LOG_GROUP:
+               await Mbot.send_message(LOG_GROUP,f"YouTube Shorts {e} {link}")
+               await message.reply(f"400: Sorry, Unable To Find It  try another or report it  to @masterolic or support chat @spotify_supportbot 🤖  ")
+               await Mbot.send_message(LOG_GROUP, traceback.format_exc())
+               
         return await message.reply("Check out @spotify_downloa_bot(music)  @spotifynewss(Channel) \n Please Support Us By /donate To Maintain This Project")
     try:
         ids = await getIds(message.matches[0].group(0))
@@ -139,5 +144,7 @@ async def _(Mbot,message):
         await message.reply("Check out @spotify_downloa_bot(music)  @spotifynewss(Channel) \n Please Support Us By /donate To Maintain This Project")
     except Exception as e:
         print(e)
-        await message.reply(e)
-        await message.reply(traceback.format_exc())
+        if LOG_GROUP:
+               await Mbot.send_message(LOG_GROUP,f"Youtube {e} {link}")
+               await message.reply(f"400: Sorry, Unable To Find It  try another or report it  to @masterolic or support chat @spotify_supportbot 🤖  ")
+               await Mbot.send_message(LOG_GROUP, traceback.format_exc())
