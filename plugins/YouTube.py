@@ -109,7 +109,8 @@ async def _(Mbot,message):
             mkdir(randomdir)
             fileLink = await  ytdl_video(randomdir,link, message.from_user.id)
             AForCopy=await message.reply_video(fileLink)
-            await rmtree(randomdir)
+            if os.path.exists(randomdir)
+               await rmtree(randomdir)
             await m.delete()
             if DUMP_GROUP:
                 await AForCopy.copy(DUMP_GROUP)
@@ -141,7 +142,8 @@ async def _(Mbot,message):
                 await PForCopy.copy(DUMP_GROUP)
                 await AForCopy.copy(DUMP_GROUP)
         await m.delete()
-        await rmtree(randomdir)
+        if os.path.exists(randomdir)
+           await rmtree(randomdir)
         await message.reply("Check out @spotify_downloa_bot(music)  @spotifynewss(Channel) \n Please Support Us By /donate To Maintain This Project")
     except Exception as e:
         print(e)
