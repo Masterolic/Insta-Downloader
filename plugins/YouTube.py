@@ -3,6 +3,7 @@ from os import mkdir
 from random import randint
 from bot import LOG_GROUP,DUMP_GROUP
 from pyrogram import filters
+from shutil import rmtree 
 from youtube_search import YoutubeSearch
 from yt_dlp import YoutubeDL
 from requests import get
@@ -11,7 +12,37 @@ async def thumb_down(videoId):
     with open(f"/tmp/{videoId}.jpg","wb") as file:
         file.write(get(f"https://img.youtube.com/vi/{videoId}/default.jpg").content)
     return f"/tmp/{videoId}.jpg"
-  
+async def ytdl_video(path, video_url, id):
+    print(video_url)
+    qa = "mp4"  # Set to MP4 format
+    file = f"{path}/{query}"
+    ydl_opts = {
+        'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
+        'default_search': 'ytsearch',
+        'noplaylist': True,
+        "nocheckcertificate": True,
+        "outtmpl": file,
+        "quiet": True,
+        "addmetadata": True,
+        "prefer_ffmpeg": True,
+        "geo_bypass": True,
+        "cache-dir": "/tmp/",
+        "nocheckcertificate": True,
+    }
+    with YoutubeDL(ydl_opts) as ydl:
+        try:
+            video = ydl.extract_info(video_url, download=True)
+            return f"{file}.{qa}"
+        except (IOError, BrokenPipeError):
+            pass
+            video = ydl.extract_info(video_url, download=True)
+            filename = ydl.prepare_filename(video)
+            print(filename)
+            return f"{filename}.{qa}"
+        except Exception as e:
+            pass
+            print(e)
+
 async def ytdl_down(path,video_url,id):
 #    pool = multiprocessing.Pool(processes=8)
     print(video_url)
@@ -70,6 +101,19 @@ async def _(Mbot,message):
     link = message.matches[0].group(0)
     if "channel" in link or "/c/" in link:
         return await m.edit_text("**Channel** Download Not Available. ")
+    if "shorts" in link:
+        try:
+            randomdir = "/tmp/"+str(randint(1,100000000))
+            mkdir(randomdir)
+            fileLink = await  ytdl_video(randomdir,link, message.from_user.id)
+            await message.reply(fileLink)
+            await message.reply_video(fileLink)
+            await rmtree(randomdir)
+            await m.delete()
+        except Exception as e:
+            await message.reply(e)
+            await m.delete()
+        return await message.reply("Check out @spotify_downloa_bot(music)  @spotifynewss(Channel) \n Please Support Us By /donate To Maintain This Project")
     try:
         ids = await getIds(message.matches[0].group(0))
         videoInPlaylist = len(ids)
@@ -89,6 +133,7 @@ async def _(Mbot,message):
                 await PForCopy.copy(DUMP_GROUP)
                 await AForCopy.copy(DUMP_GROUP)
         await m.delete()
+        await rmtree(randomdir)
         await message.reply("Check out @spotify_downloa_bot(music)  @spotifynewss(Channel) \n Please Support Us By /donate To Maintain This Project")
     except Exception as e:
         print(e)
