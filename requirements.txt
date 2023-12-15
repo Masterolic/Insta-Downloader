@@ -6,3 +6,4 @@ tgcrypto
 wget
 git+https://github.com/yt-dlp/yt-dlp/
 youtube-search
+apscheduler
