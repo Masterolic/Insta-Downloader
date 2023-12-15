@@ -1,7 +1,8 @@
 from pyrogram import filters, Client as Mbot
 import bs4, requests
 from bot import DUMP_GROUP
-
+from sys import executable
+from os import sys , execl
 @Mbot.on_message(filters.incoming & filters.private,group=-1)
 async def monitor(Mbot, message):
            if DUMP_GROUP:
