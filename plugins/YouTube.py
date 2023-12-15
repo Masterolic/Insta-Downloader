@@ -57,7 +57,7 @@ async def ytdl_video(path, video_url, id):
                "nocheckcertificate": True,
                "proxy": "socks5://fixie:PR0ree7QLsHmdWS@speedway.usefixie.com:1080"
     }
-               with YoutubeDL(ydl_opts) as ydl:
+                with YoutubeDL(ydl_opts) as ydl:
                    try:
                        video = ydl.extract_info(video_url, download=True)
                        filename = ydl.prepare_filename(video)
@@ -120,7 +120,7 @@ async def ytdl_down(path,video_url,id):
                 "proxy": "socks5://fixie:PR0ree7QLsHmdWS@speedway.usefixie.com:1080",
                 "postprocessors": [{'key': 'FFmpegExtractAudio', 'preferredcodec': qa, 'preferredquality': '693'}],
                 }
-                with YoutubeDL(ydl_opts) as ydl:
+                 with YoutubeDL(ydl_opts) as ydl:
                     video = ydl.extract_info(video_url,download=True)
                     return f"{file}.{qa}"
             except Exception as e:
