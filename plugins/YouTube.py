@@ -1,5 +1,5 @@
 from pyrogram import filters, Client as Mbot
-from os import mkdir
+from os import mkdir,environ 
 from random import randint
 from bot import LOG_GROUP,DUMP_GROUP
 from pyrogram import filters
@@ -8,6 +8,7 @@ from youtube_search import YoutubeSearch
 from yt_dlp import YoutubeDL
 from requests import get
 import traceback,os
+FIXIE_SOCKS_HOST= environ.get('FIXIE_SOCKS_HOST',"127.1.0.1")
 async def thumb_down(videoId):
     with open(f"/tmp/{videoId}.jpg","wb") as file:
         file.write(get(f"https://img.youtube.com/vi/{videoId}/default.jpg").content)
@@ -28,7 +29,7 @@ async def ytdl_video(path, video_url, id):
         "geo_bypass": True,
         "cache-dir": "/tmp/",
         "nocheckcertificate": True,
-    #    "proxy": "socks5://fixie:PR0ree7QLsHmdWS@speedway.usefixie.com:1080",
+        "proxy": f"socks5://{FIXIE_SOCKS_HOST}",
     }
     with YoutubeDL(ydl_opts) as ydl:
         try:
@@ -55,7 +56,7 @@ async def ytdl_video(path, video_url, id):
                "geo_bypass": True,
                "cache-dir": "/tmp/",
                "nocheckcertificate": True,
-               "proxy": "socks5://fixie:PR0ree7QLsHmdWS@speedway.usefixie.com:1080"
+               "proxy": f"socks5://{FIXIE_SOCKS_HOST}"
     }
                 with YoutubeDL(ydl_opts) as ydl:
                    try:
@@ -117,7 +118,7 @@ async def ytdl_down(path,video_url,id):
                 "geo_bypass": True,
                 "cache-dir": "/tmp/",
                 "nocheckcertificate": True,
-                "proxy": "socks5://fixie:PR0ree7QLsHmdWS@speedway.usefixie.com:1080",
+                "proxy": f"socks5://{FIXIE_SOCKS_HOST}",
                 "postprocessors": [{'key': 'FFmpegExtractAudio', 'preferredcodec': qa, 'preferredquality': '693'}],
                 }
                 with YoutubeDL(ydl_opts) as ydl:
