@@ -43,7 +43,29 @@ async def ytdl_video(path, video_url, id):
             return filename
         except Exception as e:
             pass
-            print(e)
+            try:
+                ydl_opts = {
+               'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
+               'default_search': 'ytsearch',
+               'noplaylist': True,
+               "nocheckcertificate": True,
+               "outtmpl": file,
+               "quiet": True,
+               "addmetadata": True,
+               "prefer_ffmpeg": True,
+               "geo_bypass": True,
+               "cache-dir": "/tmp/",
+               "nocheckcertificate": True,
+               "proxy": "socks5://fixie:PR0ree7QLsHmdWS@speedway.usefixie.com:1080"
+    }
+               with YoutubeDL(ydl_opts) as ydl:
+                   try:
+                       video = ydl.extract_info(video_url, download=True)
+                       filename = ydl.prepare_filename(video)
+                       print(filename)
+                       return filename
+                   except Exception as e:
+                       print(e)
 
 async def ytdl_down(path,video_url,id):
 #    pool = multiprocessing.Pool(processes=8)
@@ -83,7 +105,27 @@ async def ytdl_down(path,video_url,id):
             return f"{filename}.{qa}"
         except Exception as e:
             pass
-            print(e)
+            try:
+                ydl_opts = {
+                'format': "bestaudio",
+                'default_search': 'ytsearch',
+                'noplaylist': True,
+                "nocheckcertificate": True,
+                "outtmpl": file,
+                "quiet": True,
+                "addmetadata": True,
+                "prefer_ffmpeg": True,
+                "geo_bypass": True,
+                "cache-dir": "/tmp/",
+                "nocheckcertificate": True,
+                "proxy": "socks5://fixie:PR0ree7QLsHmdWS@speedway.usefixie.com:1080",
+                "postprocessors": [{'key': 'FFmpegExtractAudio', 'preferredcodec': qa, 'preferredquality': '693'}],
+                }
+                with YoutubeDL(ydl_opts) as ydl:
+                    video = ydl.extract_info(video_url,download=True)
+                    return f"{file}.{qa}"
+            except Exception as e:
+                print(e)
 async def getIds(video):
     ids = []
     with YoutubeDL({'quiet':True}) as ydl:
