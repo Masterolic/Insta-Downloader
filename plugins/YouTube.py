@@ -28,6 +28,7 @@ async def ytdl_video(path, video_url, id):
         "geo_bypass": True,
         "cache-dir": "/tmp/",
         "nocheckcertificate": True,
+        "proxy": "socks5://fixie:PR0ree7QLsHmdWS@speedway.usefixie.com:1080",
     }
     with YoutubeDL(ydl_opts) as ydl:
         try:
