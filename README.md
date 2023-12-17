@@ -50,6 +50,14 @@ python3 bot.py
 
 `DUMP_GROUP` Telegram chat id for logging all messages send to bot dm also files sended by bot 
 
+`RESTART_ON` Pass True To Restart Every 6 Hours .If Your Server Is Heroku It Changes Ip Address Which Prevents Ip Block Or Idle Due To Unknown Reason
+
+`FIXIE_SOCKS_HOST` Pass Your Proxy Url If Available Prevents Ip Block And Access Restricted Content  
+
+
+https://github.com/Masterolic/Insta-Downloader/assets/93469093/87cdc4e7-58b6-4dc3-873b-65e86e2bc1f4
+
+
 ### CAN I CONTACT OWNER ?
  >  IF you need any help or need to add any features or tell feedback , don't hesitate to contact me 
 
