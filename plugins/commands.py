@@ -4,6 +4,7 @@ from bot import DUMP_GROUP
 from apscheduler.schedulers.background import BackgroundScheduler
 from sys import executable
 from os import sys , execl , environ 
+# if you are using service like heroku after restart it changes ip which avoid Ip Blocking Also Restart When Unknown Error occurred and bot is idle 
 RESTART_ON = environ.get('RESTART_ON')
 def restart():
      execl(executable, executable, "bot.py")
