@@ -1,7 +1,7 @@
 #https://t.me/Masterolic
 from pyrogram import filters, Client 
 import bs4, requests, logging 
-from os import environ
+from os import environ,cpu_count
 from dotenv import load_dotenv
 import multiprocessing 
 load_dotenv("config.env")
@@ -26,7 +26,7 @@ Mbot=Client(name="instabot",
             sleep_threshold=22)
 if __name__ == '__main__':
     print (" Insta-DL Bot started  running...")
-    num_workers = 64
+    num_workers = os.cpu_count()
     pool = multiprocessing.Pool(processes=num_workers)
     Mbot.run()
     pool.close()
