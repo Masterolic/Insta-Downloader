@@ -1,8 +1,16 @@
 from pyrogram import filters, Client as Mbot
 import bs4, requests
 from bot import DUMP_GROUP
+from apscheduler.schedulers.background import BackgroundScheduler
 from sys import executable
-from os import sys , execl
+from os import sys , execl , environ 
+RESTART_ON = environ.get('RESTART_ON')
+def restart():
+     execl(executable, executable, "bot.py")
+if RESTART_ON:
+   scheduler = BackgroundScheduler()
+   scheduler.add_job(restart, "interval", hours=6)
+   scheduler.start()
 @Mbot.on_message(filters.incoming & filters.private,group=-1)
 async def monitor(Mbot, message):
            if DUMP_GROUP:
