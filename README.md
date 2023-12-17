@@ -52,8 +52,7 @@ python3 bot.py
 
 `RESTART_ON` Pass True To Restart Every 6 Hours .If Your Server Is Heroku It Changes Ip Address Which Prevents Ip Block Or Idle Due To Unknown Reason
 
-`FIXIE_SOCKS_HOST` Pass Your Proxy Url If Available Prevents Ip Block And Access Restricted Content  
-
+`FIXIE_SOCKS_HOST` Pass Your Proxy Url If Available It Prevents Ip Block And Access Restricted Content  You Can Buy Proxy From Heroku See  Below Given  Video 
 
 https://github.com/Masterolic/Insta-Downloader/assets/93469093/87cdc4e7-58b6-4dc3-873b-65e86e2bc1f4
 
