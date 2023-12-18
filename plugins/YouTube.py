@@ -69,14 +69,6 @@ async def ytdl_video(path, video_url, id):
                        print(e)
 
 async def ytdl_down(path,video_url,id):
-#    pool = multiprocessing.Pool(processes=8)
-    print(video_url)
-    qa="mp3"
-    query = f"{video_url[3]} - {video_url[2]}".replace(":", "").replace("\"", "")
-    file = f"{path}/{query}"
-#    arts=",".join(ur['name'] for ur in item['artists'][0:2])
-    results = YoutubeSearch(f"{query}", max_results=1).to_dict()
-    video_url = f"https://www.youtube.com/watch?v={results[0]['id']}"
     ydl_opts = {
         'format': "bestaudio",
         'default_search': 'ytsearch',
@@ -89,7 +81,7 @@ async def ytdl_down(path,video_url,id):
         "geo_bypass": True,
         "cache-dir": "/tmp/",
         "nocheckcertificate": True,
-        "postprocessors": [{'key': 'FFmpegExtractAudio', 'preferredcodec': qa, 'preferredquality': '693'}],
+        "postprocessors": [{'key': 'FFmpegExtractAudio', 'preferredcodec': qa, 'preferredquality': '320'}],
     }
     with YoutubeDL(ydl_opts) as ydl:
         try:
@@ -120,7 +112,7 @@ async def ytdl_down(path,video_url,id):
                 "cache-dir": "/tmp/",
                 "nocheckcertificate": True,
                 "proxy": f"socks5://{FIXIE_SOCKS_HOST}",
-                "postprocessors": [{'key': 'FFmpegExtractAudio', 'preferredcodec': qa, 'preferredquality': '693'}],
+                "postprocessors": [{'key': 'FFmpegExtractAudio', 'preferredcodec': qa, 'preferredquality': '320'}],
                 }
                 with YoutubeDL(ydl_opts) as ydl:
                     video = ydl.extract_info(video_url,download=True)
