@@ -170,11 +170,13 @@ async def _(Mbot,message):
         videoInPlaylist = len(ids)
         randomdir = "/tmp/"+str(randint(1,100000000))
         mkdir(randomdir)
+        n=0
         for id in ids:
   #          await message.reply(id)
   #          await message.reply(id[2])
+            n+=1
             print(id)
-            link=f"https://youtu.be/{id[0]}"
+            link=f"https://youtu.be/{id[n]}"
             PForCopy = await message.reply_photo(f"https://i.ytimg.com/vi/{id[0]}/hqdefault.jpg",caption=f"🎧 Title : `{id[3]}`\n🎤 Artist : `{id[2]}`\n💽 Track No : `{id[1]}`\n💽 Total Track : `{videoInPlaylist}`")
             fileLink = await  ytdl_down(randomdir,link, message.from_user.id)
             print("down completely")
