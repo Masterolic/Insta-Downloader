@@ -166,17 +166,17 @@ async def _(Mbot,message):
                
         return await message.reply("Check out @spotify_downloa_bot(music)  @spotifynewss(Channel) \n Please Support Us By /donate To Maintain This Project")
     try:
-        ids = await getIds(message.matches[0].group(0))
+        if "music.youtube.com" in link:
+            link=link.replace("music.youtube.com","youtube.com")
+        ids = await getIds(link)
         videoInPlaylist = len(ids)
         randomdir = "/tmp/"+str(randint(1,100000000))
         mkdir(randomdir)
-        n=0
         for id in ids:
   #          await message.reply(id)
   #          await message.reply(id[2])
-            n+=1
             print(id)
-            link=f"https://youtu.be/{id[n]}"
+            link=f"https://youtu.be/{id[0]}"
             PForCopy = await message.reply_photo(f"https://i.ytimg.com/vi/{id[0]}/hqdefault.jpg",caption=f"🎧 Title : `{id[3]}`\n🎤 Artist : `{id[2]}`\n💽 Track No : `{id[1]}`\n💽 Total Track : `{videoInPlaylist}`")
             fileLink = await  ytdl_down(randomdir,link, message.from_user.id)
             print("down completely")
