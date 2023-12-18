@@ -72,11 +72,7 @@ async def ytdl_down(path,video_url,id):
 #    pool = multiprocessing.Pool(processes=8)
     print(video_url)
     qa="mp3"
-    query = f"{video_url[3]} - {video_url[2]}".replace(":", "").replace("\"", "")
-    file = f"{path}/{query}"
-#    arts=",".join(ur['name'] for ur in item['artists'][0:2])
-    results = YoutubeSearch(f"{query}", max_results=1).to_dict()
-    video_url = f"https://www.youtube.com/watch?v={results[0]['id']}"
+    file = f"{path}/%(title)s"
     ydl_opts = {
         'format': "bestaudio",
         'default_search': 'ytsearch',
@@ -175,7 +171,7 @@ async def _(Mbot,message):
   #          await message.reply(id)
   #          await message.reply(id[2])
             PForCopy = await message.reply_photo(f"https://i.ytimg.com/vi/{id[0]}/hqdefault.jpg",caption=f"🎧 Title : `{id[3]}`\n🎤 Artist : `{id[2]}`\n💽 Track No : `{id[1]}`\n💽 Total Track : `{videoInPlaylist}`")
-            fileLink = await  ytdl_down(randomdir,id, message.from_user.id)
+            fileLink = await  ytdl_down(randomdir,link, message.from_user.id)
             print("down completely")
             thumnail = await thumb_down(id[0])
           #  await message.reply(fileLink)
