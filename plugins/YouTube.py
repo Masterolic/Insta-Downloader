@@ -174,7 +174,7 @@ async def _(Mbot,message):
   #          await message.reply(id)
   #          await message.reply(id[2])
             print(id)
-            link=f"https://youtu.be.com/{id[0]}"
+            link=f"https://youtu.be/{id[0]}"
             PForCopy = await message.reply_photo(f"https://i.ytimg.com/vi/{id[0]}/hqdefault.jpg",caption=f"🎧 Title : `{id[3]}`\n🎤 Artist : `{id[2]}`\n💽 Track No : `{id[1]}`\n💽 Total Track : `{videoInPlaylist}`")
             fileLink = await  ytdl_down(randomdir,link, message.from_user.id)
             print("down completely")
