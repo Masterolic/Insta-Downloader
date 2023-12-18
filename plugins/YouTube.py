@@ -69,7 +69,14 @@ async def ytdl_video(path, video_url, id):
                        print(e)
 
 async def ytdl_down(path,video_url,id):
-    file = f"{path}/%(title)s.%(ext)s"
+#    pool = multiprocessing.Pool(processes=8)
+    print(video_url)
+    qa="mp3"
+    query = f"{video_url[3]} - {video_url[2]}".replace(":", "").replace("\"", "")
+    file = f"{path}/{query}"
+#    arts=",".join(ur['name'] for ur in item['artists'][0:2])
+    results = YoutubeSearch(f"{query}", max_results=1).to_dict()
+    video_url = f"https://www.youtube.com/watch?v={results[0]['id']}"
     ydl_opts = {
         'format': "bestaudio",
         'default_search': 'ytsearch',
@@ -187,3 +194,4 @@ async def _(Mbot,message):
                await Mbot.send_message(LOG_GROUP,f"Youtube {e} {link}")
                await message.reply(f"400: Sorry, Unable To Find It  try another or report it  to @masterolic or support chat @spotify_supportbot 🤖  ")
                await Mbot.send_message(LOG_GROUP, traceback.format_exc())
+            
