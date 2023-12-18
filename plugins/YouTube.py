@@ -69,6 +69,7 @@ async def ytdl_video(path, video_url, id):
                        print(e)
 
 async def ytdl_down(path,video_url,id):
+    file = f"{path}/%(title)s.%(ext)s"
     ydl_opts = {
         'format': "bestaudio",
         'default_search': 'ytsearch',
