@@ -85,6 +85,7 @@ async def ytdl_down(path,video_url,id):
         "geo_bypass": True,
         "cache-dir": "/tmp/",
         "nocheckcertificate": True,
+        "proxy": f"socks5://{FIXIE_SOCKS_HOST}",
         "postprocessors": [{'key': 'FFmpegExtractAudio', 'preferredcodec': qa, 'preferredquality': '320'}],
     }
     with YoutubeDL(ydl_opts) as ydl:
