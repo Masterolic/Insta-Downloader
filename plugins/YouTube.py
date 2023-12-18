@@ -90,9 +90,10 @@ async def ytdl_down(path,video_url,id):
     with YoutubeDL(ydl_opts) as ydl:
         try:
             video = ydl.extract_info(video_url,download=True)
+            filename = ydl.prepare_filename(video)
            # info = ydl.extract_info(video)
         #    filename = ydl.prepare_filename(video)
-            return f"{file}.{qa}"
+            return f"{filename}.{qa}"
         except (IOError,BrokenPipeError):
             pass
             video = ydl.extract_info(video_url, download=True)
@@ -120,7 +121,8 @@ async def ytdl_down(path,video_url,id):
                 }
                 with YoutubeDL(ydl_opts) as ydl:
                     video = ydl.extract_info(video_url,download=True)
-                    return f"{file}.{qa}"
+                    filename = ydl.prepare_filename(video)
+                    return f"{filename}.{qa}"
             except Exception as e:
                 print(e)
 async def getIds(video):
