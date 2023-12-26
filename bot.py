@@ -3,7 +3,7 @@ from pyrogram import filters, Client
 import bs4, requests, logging 
 from os import environ,cpu_count
 from dotenv import load_dotenv
-import multiprocessing ,asyncio
+import multiprocessing 
 load_dotenv("config.env")
 API_ID=int(environ['API_ID'])
 API_HASH=environ['API_HASH']
@@ -26,9 +26,8 @@ Mbot=Client(name="instabot",
             sleep_threshold=22)
 if __name__ == '__main__':
     print (" Insta-DL Bot started  running...")
-    num_workers = 60 + cpu_count()
+    num_workers = cpu_count()
     pool = multiprocessing.Pool(processes=num_workers)
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(Mbot.run())
+    Mbot.run()
     pool.close()
     pool.join()
