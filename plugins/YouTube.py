@@ -7,13 +7,16 @@ from shutil import rmtree
 from youtube_search import YoutubeSearch
 from yt_dlp import YoutubeDL
 from requests import get
+from asgiref.sync import sync_to_async
 import traceback,os
 FIXIE_SOCKS_HOST= environ.get('FIXIE_SOCKS_HOST')
-async def thumb_down(videoId):
+@sync_to_async
+def thumb_down(videoId):
     with open(f"/tmp/{videoId}.jpg","wb") as file:
         file.write(get(f"https://img.youtube.com/vi/{videoId}/default.jpg").content)
     return f"/tmp/{videoId}.jpg"
-async def ytdl_video(path, video_url, id):
+@sync_to_async
+def ytdl_video(path, video_url, id):
     print(video_url)
     qa = "mp4"  # Set to MP4 format
     file = f"{path}/%(title)s.%(ext)s"
@@ -69,8 +72,8 @@ async def ytdl_video(path, video_url, id):
                        return filename
                    except Exception as e:
                        print(e)
-
-async def ytdl_down(path,video_url,id):
+@sync_to_async
+def ytdl_down(path,video_url,id):
 #    pool = multiprocessing.Pool(processes=8)
     print(video_url)
     qa="mp3"
@@ -129,7 +132,8 @@ async def ytdl_down(path,video_url,id):
                     return f"{filename}.{qa}"
             except Exception as e:
                 print(e)
-async def getIds(video):
+@sync_to_async
+def getIds(video):
     ids = []
     with YoutubeDL({'quiet':True}) as ydl:
         info_dict = ydl.extract_info(video, download=False)
