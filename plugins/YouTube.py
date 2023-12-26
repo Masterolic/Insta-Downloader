@@ -45,6 +45,7 @@ async def ytdl_video(path, video_url, id):
             print(filename)
             return filename
         except Exception as e:
+           print(e)
            if FIXIE_SOCKS_HOST:
                 ydl_opts = {
                'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
