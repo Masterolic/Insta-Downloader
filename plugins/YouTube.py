@@ -17,11 +17,10 @@ def thumb_down(videoId):
     return f"/tmp/{videoId}.jpg"
 @sync_to_async
 def ytdl_video(path, video_url, id):
-    print(video_url)
     qa = "mp4"  # Set to MP4 format
     file = f"{path}/%(title)s.%(ext)s"
     ydl_opts = {
-        'format': 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
+        'format': 'best'#video[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
         'default_search': 'ytsearch',
         'noplaylist': True,
         "nocheckcertificate": True,
@@ -30,14 +29,14 @@ def ytdl_video(path, video_url, id):
         "addmetadata": True,
         "prefer_ffmpeg": True,
         "geo_bypass": True,
-        "cache-dir": "/tmp/",
-        "ratelimit": 500000,
+        "cachedir": "/tmp/",
+        "ratelimit": 1000000,
         "nocheckcertificate": True,
  #       "proxy": f"socks5://{FIXIE_SOCKS_HOST}",
     }
     with YoutubeDL(ydl_opts) as ydl:
         try:
-            video = ydl.extract_info(video_url, download=True)
+            video = ydl.download(video_url)#, download=True)
             filename = ydl.prepare_filename(video)
             print(filename)
             return filename
@@ -60,7 +59,7 @@ def ytdl_video(path, video_url, id):
                "addmetadata": True,
                "prefer_ffmpeg": True,
                "geo_bypass": True,
-               "cache-dir": "/tmp/",
+               "cachedir": "/tmp/",
                "nocheckcertificate": True,
                "proxy": f"socks5://{FIXIE_SOCKS_HOST}"
     }
@@ -88,15 +87,15 @@ def ytdl_down(path,video_url,id):
         "addmetadata": True,
         "prefer_ffmpeg": True,
         "geo_bypass": True,
-        "cache-dir": "/tmp/",
-        "ratelimit": 500000,
+        "cachedir": "/tmp/",
+        "ratelimit": 1000000,
         "nocheckcertificate": True,
  #       "proxy": f"socks5://{FIXIE_SOCKS_HOST}",
         "postprocessors": [{'key': 'FFmpegExtractAudio', 'preferredcodec': qa, 'preferredquality': '320'}],
     }
     with YoutubeDL(ydl_opts) as ydl:
         try:
-            video = ydl.extract_info(video_url,download=True)
+            video = ydl.download(video_url) #,download=True)
             filename = ydl.prepare_filename(video)
            # info = ydl.extract_info(video)
         #    filename = ydl.prepare_filename(video)
