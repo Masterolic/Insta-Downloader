@@ -28,6 +28,7 @@ async def ytdl_video(path, video_url, id):
         "prefer_ffmpeg": True,
         "geo_bypass": True,
         "cache-dir": "/tmp/",
+        "ratelimit": 500000,
         "nocheckcertificate": True,
  #       "proxy": f"socks5://{FIXIE_SOCKS_HOST}",
     }
@@ -84,6 +85,7 @@ async def ytdl_down(path,video_url,id):
         "prefer_ffmpeg": True,
         "geo_bypass": True,
         "cache-dir": "/tmp/",
+        "ratelimit": 500000,
         "nocheckcertificate": True,
  #       "proxy": f"socks5://{FIXIE_SOCKS_HOST}",
         "postprocessors": [{'key': 'FFmpegExtractAudio', 'preferredcodec': qa, 'preferredquality': '320'}],
